@@ -1,11 +1,12 @@
 interface Cell {
   x: number;
   y: number;
+  value: number;
 }
 
 class Board {
   private size: number;
-  private grid: string[][];
+  grid: number[][];
 
   constructor(size: number) {
     this.size = size;
@@ -13,7 +14,7 @@ class Board {
     for (let i = 0; i < this.size; i++) {
       this.grid[i] = new Array(size);
       for (let j = 0; i < this.size; j++) {
-        this.grid[i][j] = "";
+        this.grid[i][j] = -1;
       }
     }
   }
@@ -22,8 +23,8 @@ class Board {
     let cells: Array<Cell> = new Array<Cell>();
     for (let i = 0; i < this.size; i++) {
       for (let j = 0; j < this.size; j++) {
-        if (this.grid[i][j] == "") {
-          cells.push({ x: i, y: j });
+        if (this.grid[i][j] == -1) {
+          cells.push({ x: i, y: j, value: -1 });
         }
       }
     }
@@ -42,3 +43,5 @@ class Board {
     return !this.useFulCell().length;
   }
 }
+
+module.exports = Board;

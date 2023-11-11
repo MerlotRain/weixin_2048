@@ -1,66 +1,61 @@
 // pages/2048/2048.ts
+
+/// <reference path="./main.ts" />
+/// <reference path="./grid.ts" />
+
 Page({
+  data: {
+    hidden: false,
+    start: "开始游戏",
+    num: [],
+    score: 0,
+    bestScore: 0,
+    endMsg: "",
+    over: false,
+  },
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
+  onLoad() {},
 
-    },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+  onReady() {
+    if (wx.getStorageSync("highScore")) {
+      wx.setStorageSync("highScore", 0);
     }
-})
+    this.gameStart();
+  },
+
+  gameStart() {
+    let main = new Main(4);
+    this.setData({ main: main, bestScore: wx.getStorageSync("highScore") });
+
+    this.setData({
+        hidden:true,
+        over:false,
+        score:0
+    })
+  },
+
+  gameOver() {
+
+  },
+
+  
+  
+
+  onShow() {},
+
+  onHide() {},
+
+  onUnload() {},
+
+  onPullDownRefresh() {},
+
+  onReachBottom() {},
+
+  onShareAppMessage() {
+      return {
+          title:'2048小游戏',
+          desc: '来试试你能达到多少分',
+          path: 'page/user?id=123'   
+      }
+  },
+});
