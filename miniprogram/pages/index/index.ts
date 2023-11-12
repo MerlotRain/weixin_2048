@@ -14,9 +14,9 @@ Page({
     var timer = setInterval(() => {
       if (n == 6) {
         clearInterval(timer);
-        // wx.redirectTo({
-        //   url: '../2048/2048'
-        // })
+        wx.redirectTo({
+          url: '../2048/2048'
+        })
       }
       this.setData({
         current: this.data.current + 1,

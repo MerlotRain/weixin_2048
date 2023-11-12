@@ -3,7 +3,7 @@
 class Main {
   private size: number;
   private startData: number;
-  private board: Board;
+  board: Board;
 
   constructor(size: number) {
     this.size = size;
